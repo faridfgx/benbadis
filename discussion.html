@@ -247,12 +247,14 @@
         .messages-wrapper {
             flex: 1;
             overflow-y: auto;
+            overflow-x: hidden;
             padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 12px;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
         }
 
         .message {
@@ -469,6 +471,7 @@
 
             .messages-wrapper {
                 padding: 16px 12px;
+                padding-bottom: 80px; /* Extra space at bottom for easier scrolling */
             }
 
             .message {
@@ -488,7 +491,7 @@
             }
 
             .send-btn {
-                padding: 10px 16px;
+                padding: 22px 32px;
             }
 
             .send-btn span {
@@ -608,10 +611,10 @@
     
     <script>
         // ⚠️ REPLACE THESE WITH YOUR SUPABASE CREDENTIALS
-        const SUPABASE_URL = 'https://brtylfnzrcljicppargr.supabase.co'; // e.g., 'https://xxxxx.supabase.co'
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJydHlsZm56cmNsamljcHBhcmdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE3MjU2OTMsImV4cCI6MjA3NzMwMTY5M30.cUFqyzyOlrJuM_CxdQcokXfj5-5NUnLorIriEHWDl2I'; // Long string starting with 'eyJ...'
-    
-        const PASSWORD = 'benbadis2025'; // Change this to your desired password
+        const SUPABASE_URL = 'https://brtylfnzrcljicppargr.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJydHlsZm56cmNsamljcHBhcmdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE3MjU2OTMsImV4cCI6MjA3NzMwMTY5M30.cUFqyzyOlrJuM_CxdQcokXfj5-5NUnLorIriEHWDl2I';
+        
+        const PASSWORD = 'benbadis2024';
         
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
@@ -692,10 +695,6 @@
                 .subscribe((status) => {
                     console.log('Subscription status:', status);
                 });
-            
-            setInterval(() => {
-                loadMessages();
-            }, 180000);
         }
 
         function displayMessages(messages) {
@@ -850,4 +849,3 @@
     </script>
 </body>
 </html>
-
