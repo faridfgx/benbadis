@@ -2,95 +2,53 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة النقاش - Discussion Board</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --primary-light: #818cf8;
-            --secondary: #8b5cf6;
-            --success: #10b981;
-            --danger: #ef4444;
-            --text: #1f2937;
-            --text-light: #6b7280;
-            --bg: #f9fafb;
-            --white: #ffffff;
-            --border: #e5e7eb;
-            --shadow: rgba(0, 0, 0, 0.1);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        /* Login Screen */
-        .login-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 20px;
         }
 
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .login-box, .chat-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
         .login-box {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 40px 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 420px;
-            animation: slideUp 0.4s ease;
+            max-width: 400px;
+            margin: 100px auto;
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .login-header {
+        .header {
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 30px;
         }
 
-        .logo {
-            font-size: 64px;
-            margin-bottom: 16px;
-            animation: bounce 2s infinite;
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .login-header h1 {
-            color: var(--text);
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .login-header p {
-            color: var(--text-light);
-            font-size: 15px;
+        .header p {
+            color: #666;
+            font-size: 1.1em;
         }
 
         .input-group {
@@ -100,177 +58,104 @@
         .input-group label {
             display: block;
             margin-bottom: 8px;
-            color: var(--text);
+            color: #333;
             font-weight: 600;
-            font-size: 14px;
-        }
-
-        .input-wrapper {
-            position: relative;
         }
 
         .input-group input {
             width: 100%;
-            padding: 14px 16px;
-            border: 2px solid var(--border);
-            border-radius: 12px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
             font-size: 16px;
-            transition: all 0.3s;
-            background: var(--bg);
+            transition: border-color 0.3s;
         }
 
         .input-group input:focus {
             outline: none;
-            border-color: var(--primary);
-            background: var(--white);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+            border-color: #667eea;
         }
 
-        .btn-primary {
+        .btn {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--white);
+            padding: 15px;
+            background: #667eea;
+            color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 17px;
-            font-weight: 700;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            transition: background 0.3s;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        .btn:hover {
+            background: #5568d3;
         }
 
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        .btn-primary:disabled {
-            background: var(--border);
+        .btn:disabled {
+            background: #ccc;
             cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
         }
 
-        /* Chat Screen */
-        .chat-container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            height: 100dvh; /* Dynamic viewport height for mobile */
-            background: var(--bg);
-            overflow: hidden;
-            position: relative;
+        .hidden {
+            display: none;
         }
 
         .chat-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--white);
-            padding: 16px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            flex-shrink: 0;
         }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .header-icon {
-            font-size: 28px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .header-info h2 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 2px;
+        .chat-header h2 {
+            font-size: 1.8em;
         }
 
         .user-info {
-            font-size: 13px;
+            font-size: 0.9em;
             opacity: 0.9;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .website-link {
-            color: var(--white);
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 3px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .website-link:hover {
-            background: rgba(255, 255, 255, 0.3);
         }
 
         .logout-btn {
             background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: var(--white);
-            padding: 8px 16px;
+            border: 2px solid white;
+            color: white;
+            padding: 8px 20px;
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s;
-            white-space: nowrap;
+            transition: background 0.3s;
         }
 
         .logout-btn:hover {
             background: rgba(255, 255, 255, 0.3);
         }
 
-        /* Messages Area */
-        .messages-wrapper {
-            flex: 1;
-            overflow-y: scroll;
-            overflow-x: hidden;
+        .messages-container {
+            height: 500px;
+            overflow-y: auto;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior-y: contain;
-            position: relative;
-            min-height: 0;
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin-bottom: 20px;
         }
 
         .message {
-            background: var(--white);
-            padding: 16px;
-            border-radius: 16px;
-            box-shadow: 0 2px 8px var(--shadow);
-            animation: messageSlide 0.3s ease;
-            max-width: 90%;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.3s ease;
         }
 
-        @keyframes messageSlide {
+        @keyframes slideIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -284,331 +169,182 @@
         .message-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 10px;
-            gap: 12px;
         }
 
         .message-author {
             font-weight: 700;
-            color: var(--primary);
-            font-size: 15px;
-            word-break: break-word;
-        }
-
-        .message-meta {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0;
+            color: #667eea;
+            font-size: 1.1em;
         }
 
         .message-time {
-            font-size: 12px;
-            color: var(--text-light);
-            white-space: nowrap;
-        }
-
-        .delete-btn {
-            background: var(--danger);
-            color: var(--white);
-            border: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .delete-btn:hover {
-            background: #dc2626;
-            transform: scale(1.05);
+            font-size: 0.85em;
+            color: #999;
         }
 
         .message-text {
-            color: var(--text);
+            color: #333;
             line-height: 1.6;
             white-space: pre-wrap;
-            word-wrap: break-word;
-            font-size: 15px;
         }
 
-        .loading, .empty-state {
-            text-align: center;
-            color: var(--text-light);
-            padding: 60px 20px;
+        .delete-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-right: 10px;
         }
 
-        .empty-icon {
-            font-size: 80px;
-            opacity: 0.3;
-            margin-bottom: 16px;
+        .delete-btn:hover {
+            background: #ff3838;
         }
 
-        /* Message Input */
-        .input-area {
-            background: var(--white);
-            padding: 16px 20px;
-            padding-bottom: max(16px, env(safe-area-inset-bottom));
-            border-top: 1px solid var(--border);
+        .message-input-container {
             display: flex;
-            gap: 12px;
+            gap: 15px;
             align-items: flex-end;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            bottom: 0;
-            z-index: 50;
-            flex-shrink: 0;
         }
 
         .message-input {
             flex: 1;
-            padding: 12px 16px;
-            border: 2px solid var(--border);
-            border-radius: 16px;
-            font-size: 15px;
-            resize: none;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 60px;
             font-family: inherit;
-            transition: all 0.3s;
-            background: var(--bg);
-            min-height: 44px;
-            max-height: 120px;
         }
 
         .message-input:focus {
             outline: none;
-            border-color: var(--primary);
-            background: var(--white);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+            border-color: #667eea;
         }
 
         .send-btn {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--white);
+            padding: 15px 30px;
+            background: #667eea;
+            color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            font-size: 15px;
-            font-weight: 700;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-            white-space: nowrap;
+            transition: background 0.3s;
+            height: 60px;
         }
 
-        .send-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
-        }
-
-        .send-btn:active {
-            transform: translateY(0);
+        .send-btn:hover {
+            background: #5568d3;
         }
 
         .send-btn:disabled {
-            background: var(--border);
+            background: #ccc;
             cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
         }
 
-        .send-icon {
-            font-size: 18px;
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 40px;
+            font-size: 1.2em;
         }
 
-        /* Error Message */
+        .empty-state {
+            text-align: center;
+            color: #999;
+            padding: 60px 20px;
+        }
+
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
         .error {
-            background: var(--danger);
-            color: var(--white);
-            padding: 16px;
-            border-radius: 12px;
+            background: #ff4757;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
             margin-bottom: 20px;
             text-align: center;
-            animation: shake 0.5s;
-            font-weight: 600;
         }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+        .website-link {
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            transition: background 0.3s;
         }
 
-        .hidden {
-            display: none !important;
-        }
-
-        /* Mobile Optimizations */
-        @media (max-width: 768px) {
-            .login-box {
-                padding: 32px 24px;
-                border-radius: 20px;
-            }
-
-            .login-header h1 {
-                font-size: 24px;
-            }
-
-            .logo {
-                font-size: 56px;
-            }
-
-            .chat-header {
-                padding: 12px 16px;
-            }
-
-            .header-info h2 {
-                font-size: 16px;
-            }
-
-            .user-info {
-                font-size: 12px;
-            }
-
-            .logout-btn {
-                padding: 6px 12px;
-                font-size: 13px;
-            }
-
-            .messages-wrapper {
-                padding: 16px 12px;
-                padding-top: 20px;
-                padding-bottom: 100px; /* Extra space at bottom for easier scrolling */
-            }
-
-            .message {
-                padding: 14px;
-                max-width: 95%;
-            }
-
-            .input-area {
-                padding: 12px;
-                padding-bottom: max(12px, env(safe-area-inset-bottom));
-                gap: 8px;
-            }
-
-            .message-input {
-                font-size: 16px; /* Prevents zoom on iOS */
-                padding: 10px 14px;
-            }
-
-            .send-btn {
-                padding: 10px 16px;
-            }
-
-            .send-btn span {
-                display: none;
-            }
-
-            .send-icon {
-                font-size: 20px;
-            }
-        }
-
-        /* Scrollbar Styling */
-        .messages-wrapper::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .messages-wrapper::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .messages-wrapper::-webkit-scrollbar-thumb {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-        }
-
-        .messages-wrapper::-webkit-scrollbar-thumb:hover {
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        /* Loading Spinner */
-        .spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--white);
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .website-link:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
 <body>
     <!-- Login Screen -->
-    <div id="loginScreen" class="login-container">
-        <div class="login-box">
-            <div class="login-header">
-                <div class="logo">💬</div>
-                <h1>لوحة النقاش</h1>
-                <p>مناقشة محتوى موقع بن باديس</p>
-            </div>
-            
-            <div id="errorMessage" class="error hidden"></div>
-            
-            <div class="input-group">
-                <label for="usernameInput">الاسم</label>
-                <div class="input-wrapper">
-                    <input type="text" id="usernameInput" placeholder="أدخل اسمك" autocomplete="name">
-                </div>
-            </div>
-            
-            <div class="input-group">
-                <label for="passwordInput">كلمة المرور</label>
-                <div class="input-wrapper">
-                    <input type="password" id="passwordInput" placeholder="أدخل كلمة المرور" autocomplete="current-password">
-                </div>
-            </div>
-            
-            <button class="btn-primary" onclick="login()">دخول</button>
+    <div id="loginScreen" class="login-box">
+        <div class="header">
+            <h1>🗨️ لوحة النقاش</h1>
+            <p>مناقشة محتوى موقع بن باديس</p>
         </div>
+        
+        <div id="errorMessage" class="error hidden"></div>
+        
+        <div class="input-group">
+            <label for="usernameInput">الاسم</label>
+            <input type="text" id="usernameInput" placeholder="أدخل اسمك">
+        </div>
+        
+        <div class="input-group">
+            <label for="passwordInput">كلمة المرور</label>
+            <input type="password" id="passwordInput" placeholder="أدخل كلمة المرور">
+        </div>
+        
+        <button class="btn" onclick="login()">دخول</button>
     </div>
 
     <!-- Chat Screen -->
-    <div id="chatScreen" class="chat-container hidden">
-        <div class="chat-header">
-            <div class="header-left">
-                <div class="header-icon">💬</div>
-                <div class="header-info">
+    <div id="chatScreen" class="container hidden">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div>
                     <h2>لوحة النقاش</h2>
                     <div class="user-info">
-                        <span>مرحباً <strong id="currentUser"></strong></span>
+                        مرحباً <span id="currentUser"></span> | 
                         <a href="https://faridfgx.github.io/benbadis" target="_blank" class="website-link">
                             الموقع الرئيسي
                         </a>
                     </div>
                 </div>
+                <button class="logout-btn" onclick="logout()">تسجيل خروج</button>
             </div>
-            <button class="logout-btn" onclick="logout()">خروج</button>
-        </div>
 
-        <div id="messagesContainer" class="messages-wrapper">
-            <div class="loading">
-                <div class="empty-icon">⏳</div>
-                <p>جاري تحميل الرسائل...</p>
+            <div id="messagesContainer" class="messages-container">
+                <div class="loading">جاري تحميل الرسائل...</div>
             </div>
-        </div>
 
-        <div class="input-area">
-            <textarea 
-                id="messageInput" 
-                class="message-input" 
-                placeholder="اكتب رسالتك..."
-                rows="1"
-            ></textarea>
-            <button class="send-btn" onclick="sendMessage()">
-                <span>إرسال</span>
-                <span class="send-icon">📤</span>
-            </button>
+            <div class="message-input-container">
+                <textarea 
+                    id="messageInput" 
+                    class="message-input" 
+                    placeholder="اكتب رسالتك هنا... (Shift+Enter لسطر جديد)"
+                    rows="3"
+                ></textarea>
+                <button class="send-btn" onclick="sendMessage()">إرسال</button>
+            </div>
         </div>
     </div>
 
@@ -620,17 +356,20 @@
         const SUPABASE_URL = 'https://brtylfnzrcljicppargr.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJydHlsZm56cmNsamljcHBhcmdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE3MjU2OTMsImV4cCI6MjA3NzMwMTY5M30.cUFqyzyOlrJuM_CxdQcokXfj5-5NUnLorIriEHWDl2I';
         
-        const PASSWORD = 'benbadis2025';
+        const PASSWORD = 'benbadis2025'; // Change this to your desired password
         
+        // Initialize Supabase client
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
         let currentUsername = localStorage.getItem('discussion_username');
         let messagesSubscription = null;
 
+        // Check if user is logged in
         if (currentUsername) {
             showChatScreen();
         }
 
+        // Login function
         function login() {
             const username = document.getElementById('usernameInput').value.trim();
             const password = document.getElementById('passwordInput').value;
@@ -651,9 +390,8 @@
             showChatScreen();
         }
 
+        // Logout function
         function logout() {
-            if (!confirm('هل أنت متأكد من تسجيل الخروج؟')) return;
-            
             localStorage.removeItem('discussion_username');
             currentUsername = null;
             if (messagesSubscription) {
@@ -663,6 +401,7 @@
             document.getElementById('chatScreen').classList.add('hidden');
         }
 
+        // Show chat screen
         function showChatScreen() {
             document.getElementById('loginScreen').classList.add('hidden');
             document.getElementById('chatScreen').classList.remove('hidden');
@@ -671,6 +410,7 @@
             subscribeToMessages();
         }
 
+        // Load messages from Supabase
         async function loadMessages() {
             try {
                 const { data, error } = await supabase
@@ -684,34 +424,34 @@
             } catch (error) {
                 console.error('Error loading messages:', error);
                 document.getElementById('messagesContainer').innerHTML = 
-                    '<div class="error">حدث خطأ في تحميل الرسائل</div>';
+                    '<div class="error">حدث خطأ في تحميل الرسائل: ' + error.message + '</div>';
             }
         }
 
+        // Subscribe to real-time updates
         function subscribeToMessages() {
             messagesSubscription = supabase
-                .channel('messages_channel')
+                .channel('messages')
                 .on('postgres_changes', 
                     { event: '*', schema: 'public', table: 'messages' }, 
                     (payload) => {
-                        console.log('Real-time update received:', payload);
                         loadMessages();
                     }
                 )
-                .subscribe((status) => {
-                    console.log('Subscription status:', status);
-                });
+                .subscribe();
         }
 
+        // Display messages
         function displayMessages(messages) {
             const container = document.getElementById('messagesContainer');
-            const wasAtBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 100;
             
             if (messages.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
-                        <div class="empty-icon">💭</div>
-                        <p>لا توجد رسائل بعد<br>كن أول من يبدأ النقاش!</p>
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                        </svg>
+                        <p>لا توجد رسائل بعد. كن أول من يبدأ النقاش!</p>
                     </div>
                 `;
                 return;
@@ -720,35 +460,28 @@
             container.innerHTML = messages.map(msg => `
                 <div class="message">
                     <div class="message-header">
-                        <div class="message-author">${escapeHtml(msg.author)}</div>
-                        <div class="message-meta">
-                            <span class="message-time">${formatTime(msg.created_at)}</span>
+                        <span class="message-author">${escapeHtml(msg.author)}</span>
+                        <div>
                             ${msg.author === currentUsername ? 
                                 `<button class="delete-btn" onclick="deleteMessage(${msg.id})">حذف</button>` 
                                 : ''}
+                            <span class="message-time">${formatTime(msg.created_at)}</span>
                         </div>
                     </div>
                     <div class="message-text">${escapeHtml(msg.message)}</div>
                 </div>
             `).join('');
 
-            // Only auto-scroll if user was at bottom
-            if (wasAtBottom) {
-                setTimeout(() => {
-                    container.scrollTop = container.scrollHeight;
-                }, 100);
-            }
+            // Scroll to bottom
+            container.scrollTop = container.scrollHeight;
         }
 
+        // Send message
         async function sendMessage() {
             const input = document.getElementById('messageInput');
             const message = input.value.trim();
 
             if (!message) return;
-
-            const sendBtn = document.querySelector('.send-btn');
-            sendBtn.disabled = true;
-            sendBtn.innerHTML = '<div class="spinner"></div>';
 
             try {
                 const { error } = await supabase
@@ -760,18 +493,13 @@
                 if (error) throw error;
 
                 input.value = '';
-                input.style.height = 'auto';
-                
-                await loadMessages();
             } catch (error) {
                 console.error('Error sending message:', error);
                 showError('حدث خطأ في إرسال الرسالة');
-            } finally {
-                sendBtn.disabled = false;
-                sendBtn.innerHTML = '<span>إرسال</span><span class="send-icon">📤</span>';
             }
         }
 
+        // Delete message
         async function deleteMessage(id) {
             if (!confirm('هل أنت متأكد من حذف هذه الرسالة؟')) return;
 
@@ -788,33 +516,26 @@
             }
         }
 
+        // Format timestamp
         function formatTime(timestamp) {
             const date = new Date(timestamp);
-            const now = new Date();
-            const diff = now - date;
-            const hours = Math.floor(diff / 3600000);
-            
-            if (hours < 1) {
-                const minutes = Math.floor(diff / 60000);
-                return minutes < 1 ? 'الآن' : `منذ ${minutes} د`;
-            } else if (hours < 24) {
-                return `منذ ${hours} س`;
-            } else {
-                return date.toLocaleString('ar-DZ', {
-                    month: 'short',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-            }
+            return date.toLocaleString('ar-DZ', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
         }
 
+        // Escape HTML to prevent XSS
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
 
+        // Show error message
         function showError(message) {
             const errorDiv = document.getElementById('errorMessage');
             errorDiv.textContent = message;
@@ -824,16 +545,11 @@
             }, 3000);
         }
 
-        // Auto-resize textarea
+        // Handle Enter key for sending messages
         document.addEventListener('DOMContentLoaded', () => {
             const messageInput = document.getElementById('messageInput');
             const passwordInput = document.getElementById('passwordInput');
             
-            messageInput?.addEventListener('input', function() {
-                this.style.height = 'auto';
-                this.style.height = Math.min(this.scrollHeight, 120) + 'px';
-            });
-
             messageInput?.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();
@@ -847,13 +563,7 @@
                 }
             });
         });
-
-        // Prevent zoom on iOS
-        document.addEventListener('touchmove', function(event) {
-            if (event.scale !== 1) {
-                event.preventDefault();
-            }
-        }, { passive: false });
     </script>
 </body>
 </html>
+
