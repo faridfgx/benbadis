@@ -163,6 +163,8 @@
             height: 100vh;
             height: 100dvh; /* Dynamic viewport height for mobile */
             background: var(--bg);
+            overflow: hidden;
+            position: relative;
         }
 
         .chat-header {
@@ -176,6 +178,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            flex-shrink: 0;
         }
 
         .header-left {
@@ -246,15 +249,16 @@
         /* Messages Area */
         .messages-wrapper {
             flex: 1;
-            overflow-y: auto;
+            overflow-y: scroll;
             overflow-x: hidden;
             padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            overscroll-behavior: contain;
+            overscroll-behavior-y: contain;
+            position: relative;
+            min-height: 0;
         }
 
         .message {
@@ -355,6 +359,7 @@
             position: sticky;
             bottom: 0;
             z-index: 50;
+            flex-shrink: 0;
         }
 
         .message-input {
@@ -471,7 +476,8 @@
 
             .messages-wrapper {
                 padding: 16px 12px;
-                padding-bottom: 80px; /* Extra space at bottom for easier scrolling */
+                padding-top: 20px;
+                padding-bottom: 100px; /* Extra space at bottom for easier scrolling */
             }
 
             .message {
@@ -491,7 +497,7 @@
             }
 
             .send-btn {
-                padding: 22px 32px;
+                padding: 10px 16px;
             }
 
             .send-btn span {
@@ -614,7 +620,7 @@
         const SUPABASE_URL = 'https://brtylfnzrcljicppargr.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJydHlsZm56cmNsamljcHBhcmdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE3MjU2OTMsImV4cCI6MjA3NzMwMTY5M30.cUFqyzyOlrJuM_CxdQcokXfj5-5NUnLorIriEHWDl2I';
         
-        const PASSWORD = 'benbadis2024';
+        const PASSWORD = 'benbadis2025';
         
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
@@ -699,6 +705,7 @@
 
         function displayMessages(messages) {
             const container = document.getElementById('messagesContainer');
+            const wasAtBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 100;
             
             if (messages.length === 0) {
                 container.innerHTML = `
@@ -709,8 +716,6 @@
                 `;
                 return;
             }
-
-            const wasScrolledToBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 100;
 
             container.innerHTML = messages.map(msg => `
                 <div class="message">
@@ -727,8 +732,11 @@
                 </div>
             `).join('');
 
-            if (wasScrolledToBottom) {
-                container.scrollTop = container.scrollHeight;
+            // Only auto-scroll if user was at bottom
+            if (wasAtBottom) {
+                setTimeout(() => {
+                    container.scrollTop = container.scrollHeight;
+                }, 100);
             }
         }
 
