@@ -124,12 +124,20 @@
         }
 
         /* Navigation */
-        nav {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 0.5rem;
-        }
+
+            nav {
+                display: none;
+                position: fixed;
+                top: 140px;
+                left: 1rem;
+                right: 1rem;
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+                z-index: 9999;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
 
         nav ul {
             list-style: none;
@@ -1148,4 +1156,5 @@
         });
     </script>
 </body>
+
 </html>
