@@ -662,7 +662,7 @@ footer {
             <div class="hero">
                 <h2>مرحباً بكم في ثانويتنا</h2>
                 <p>نسعى لبناء جيل متميز من خلال التعليم الجيد والبيئة التحفيزية</p>
-                <!--
+                
                 <div class="hero-stats">
                     <div class="hero-stat">
                         <span class="hero-stat-number">850+</span>
@@ -676,12 +676,9 @@ footer {
                         <span class="hero-stat-number">25+</span>
                         <span class="hero-stat-label">نشاط مدرسي</span>
                     </div>
-                    <div class="hero-stat">
-                        <span class="hero-stat-number">95%</span>
-                        <span class="hero-stat-label">نسبة النجاح</span>
-                    </div>
+
                 </div>
-				-->
+				
             </div>
         </div>
     </header>
@@ -724,7 +721,7 @@ footer {
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">النوادي الطلابية</h3>
-                        <p class="card-text">انضم إلى نوادي الأدب، الروبوتيكا، اللغات والعلوم</p>
+                        <p class="card-text">انضم إلى نادي الغات، النادي الأخضر، نادي عائشة أم المؤمنين ، النادي الثقافي ،نادي المعلوماتية ومختلف النوادي</p>
                         <a href="#" class="card-btn" onclick="showSection('clubs')">
                             شاهد النوادي
                             <i class="fas fa-arrow-left"></i>
@@ -883,70 +880,86 @@ footer {
         <section id="clubs" class="section">
             <div class="cards-grid">
                 <div class="card">
-                    <div class="card-image">
-                        <i class="fas fa-book"></i>
+                    <div class="card-image" style="background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);">
+                        <i class="fas fa-seedling"></i>  
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">نادي الأدب</h3>
-                        <p class="card-text">نقاشات أدبية وورش كتابة إبداعية</p>
-                        <p style="color: var(--gray-500); font-size: 0.875rem;">المشرف: الأستاذة فاطمة</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image" style="background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">نادي الروبوتيكا</h3>
-                        <p class="card-text">تصميم وبرمجة الروبوتات التعليمية</p>
-                        <p style="color: var(--gray-500); font-size: 0.875rem;">المشرف: الأستاذ محمد</p>
+                        <h3 class="card-title">النادي الأخضر</h3>
+                        <p class="card-text">التشجير وحماية البيئة</p>
+                        <p style="color: var(--gray-500); font-size: 0.875rem;">المشرف: الأستاذة ماضي هدى</p>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-image" style="background: linear-gradient(135deg, #14b8a6 0%, #5eead4 100%);">
-                        <i class="fas fa-globe"></i>
+                        <i class="fas fa-language"></i> 
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">نادي اللغات</h3>
                         <p class="card-text">تعلم اللغات الأجنبية وتبادل ثقافي</p>
-                        <p style="color: var(--gray-500); font-size: 0.875rem;">المشرف: الأستاذ أحمد</p>
+                        <p style="color: var(--gray-500); font-size: 0.875rem;">المشرف: الأستاذة شواطي هدى</p>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-image" style="background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);">
-                        <i class="fas fa-microscope"></i>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">النادي العلمي</h3>
-                        <p class="card-text">تجارب علمية وورش عملية متنوعة</p>
-                        <p style="color: var(--gray-500); font-size: 0.875rem;">المشرف: الأستاذة سارة</p>
-                    </div>
-                </div>
+				<!-- نادي المعلوماتية -->
+				<div class="card">
+					<div class="card-image" style="background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);">
+						<i class="fas fa-laptop-code"></i>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">نادي المعلوماتية</h3>
+						<p class="card-text">تعلم البرمجة والتقنيات الحديثة</p>
+						<p style="color: var(--gray-500); font-size: 0.875rem;">المشرف: الأستاذ مزان فريد</p>
+					</div>
+				</div>
 
-                <div class="card">
-                    <div class="card-image" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);">
-                        <i class="fas fa-camera"></i>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">نادي التصوير</h3>
-                        <p class="card-text">فن التصوير الفوتوغرافي والتصوير السينمائي</p>
-                        <p style="color: var(--gray-500); font-size: 0.875rem;">المشرف: الأستاذ علي</p>
-                    </div>
-                </div>
+				<!-- النادي الرياضي -->
+				<div class="card">
+					<div class="card-image" style="background: linear-gradient(135deg, #22c55e 0%, #4ade80 100%);">
+						<i class="fas fa-dumbbell"></i>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">النادي الرياضي</h3>
+						<p class="card-text">أنشطة بدنية ومسابقات رياضية متنوعة</p>
+						<p style="color: var(--gray-500); font-size: 0.875rem;">المشرف: الأستاذ ربعي رشيد</p>
+					</div>
+				</div>
 
-                <div class="card">
-                    <div class="card-image" style="background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">نادي التطوع</h3>
-                        <p class="card-text">أنشطة خدمة المجتمع والعمل التطوعي</p>
-                        <p style="color: var(--gray-500); font-size: 0.875rem;">المشرف: الأستاذة منى</p>
-                    </div>
-                </div>
+				<!-- نادي التاريخ -->
+				<div class="card">
+					<div class="card-image" style="background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);">
+						<i class="fas fa-landmark"></i>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">نادي التاريخ</h3>
+						<p class="card-text">رحلة عبر العصور لفهم الماضي واستلهام المستقبل</p>
+						<p style="color: var(--gray-500); font-size: 0.875rem;">المشرف: الأستاذة بن صوشة فوزية</p>
+					</div>
+				</div>
+
+				<!-- نادي الرحلات -->
+				<div class="card">
+					<div class="card-image" style="background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);">
+						<i class="fas fa-bus"></i>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">نادي الرحلات</h3>
+						<p class="card-text">تنظيم رحلات تربوية وثقافية وترفيهية</p>
+						<p style="color: var(--gray-500); font-size: 0.875rem;">المشرف: الأستاذ غوقة جمال</p>
+					</div>
+				</div>
+
+				<!-- نادي الإذاعة -->
+				<div class="card">
+					<div class="card-image" style="background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);">
+						<i class="fas fa-broadcast-tower"></i>
+					</div>
+					<div class="card-content">
+						<h3 class="card-title">نادي الإذاعة</h3>
+						<p class="card-text">إعداد وتقديم برامج إذاعية مدرسية</p>
+						<p style="color: var(--gray-500); font-size: 0.875rem;">المشرف: الأستاذ بلعتروس كمال</p>
+					</div>
+				</div>
             </div>
         </section>
 
